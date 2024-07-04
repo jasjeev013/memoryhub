@@ -1,3 +1,5 @@
+
+
 /* ---------- NavBar.jsx ------- */
 
 .navbar-nav {
@@ -79,6 +81,31 @@
   width: 95%; 
   
 }
+
+.title-container {
+  flex: 1; /* Ensures the title takes available space */
+  overflow: hidden; /* Hides any overflow */
+  white-space: nowrap; /* Prevents wrapping */
+  text-overflow: ellipsis; /* Displays ellipsis (...) for overflowed text */
+}
+
+
+/* -------------Categories.jsx-------------- */
+
+@media (min-width: 789px){
+
+  .vertical-line {
+    position: absolute;
+    top: 10%;
+    bottom: 0%;
+    left: 34%;
+    border-left:1px solid rgba(0, 0, 0, 0.5);;
+    /* height: 100%; */
+    
+  }
+}
+
+
 
 
 

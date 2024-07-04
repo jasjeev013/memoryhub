@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const NavBar = () => {
     return (
         <>
-        <Navbar expand="lg" className="custom-navbar  sticky-top" style={{ top: '18px' }}>
+        <Navbar expand="lg" className="custom-navbar my-3 sticky-top" style={{ top: '18px' }}>
             <Navbar.Brand className='mx-4' href="#home">MemoryHub</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">

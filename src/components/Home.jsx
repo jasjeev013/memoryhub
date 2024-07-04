@@ -1,9 +1,7 @@
 import React from 'react';
-
-import {  Row, Col, InputGroup, FormControl, Button, ListGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Row, Col, InputGroup, FormControl, Button, ListGroup } from 'react-bootstrap';
 import LinkItem from './LinkItem';
-
-
 
 const Home = () => {
   const links = [
@@ -18,9 +16,9 @@ const Home = () => {
 
   return (
     <>
-
-      <Row className="mt-4 justify-content-center align-items-center">
-        <Col md={10}>
+      {/* Search and New Link Buttons */}
+      <Row className="mt-5 justify-content-center align-items-center">
+        <Col md={8} lg={6}>
           <InputGroup className="shadowed-input">
             <FormControl placeholder="Search for something..." className="custom-search-bar" />
             <Button variant="outline-secondary" className="custom-search-button">
@@ -28,21 +26,25 @@ const Home = () => {
             </Button>
           </InputGroup>
         </Col>
-        <Col xs="auto">
-          <Button variant="primary" className="custom-new-link-button"><i className="fa-solid fa-plus"/> New Link</Button>
+        <Col xs="auto" className="mt-3 mt-md-0">
+          <Button variant="primary" className="custom-new-link-button">
+            <Link to="/addLink" style={{ color: 'white', textDecoration: 'none' }}>
+              <i className="fa-solid fa-plus"/> New Link
+            </Link>
+          </Button>
         </Col>
       </Row>
 
+      {/* List of Links */}
       <Row className="mt-4">
         <Col>
-          <ListGroup className='my-4'>
+          <ListGroup className="my-4">
             {links.map((link, index) => (
               <LinkItem key={index} title={link} />
             ))}
           </ListGroup>
         </Col>
       </Row>
-
     </>
   );
 };
