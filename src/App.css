@@ -105,6 +105,11 @@
   }
 }
 
+.clickedTag{
+  background-color: rgba(48, 157, 203, 1);
+  color: white;
+}
+
 
 
 

@@ -6,6 +6,7 @@ import Home from './components/Home';
 import AboutUs from './AboutUs';
 import AddLink from './components/AddLink';
 import Categories from './components/Categories';
+import UpdateLink from './components/UpdateLink';
 
 
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/addLink" element={<AddLink />} />
+          <Route path="/updateLink" element={<UpdateLink />} />
           <Route path="/about" element={<AboutUs />} />
         </Routes>
       </Router>

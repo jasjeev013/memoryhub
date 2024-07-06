@@ -5,7 +5,7 @@ const itemRoutes = require('./routes/items');
 const cors = require('cors');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 // Connect to MongoDB
 connectDB();
@@ -16,6 +16,11 @@ app.use(cors()); // Enable CORS for all routes
 
 // Routes
 app.use('/items', itemRoutes);
+
+
+app.use('/', (req, res) => {
+  res.send("Bello");
+});
 
 // Start the server
 app.listen(PORT, () => {
