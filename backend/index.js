@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(express.json());
 const corsOptions = {
-  origin: 'https://memoryhub.vercel.app/', // Allow requests from this origin
+  origin: 'https://memoryhub.vercel.app', // Allow requests from this origin
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
   optionsSuccessStatus: 204 // Some legacy browsers choke on 204
