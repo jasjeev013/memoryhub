@@ -4,11 +4,12 @@ import { Row, Col, InputGroup, FormControl, Button, ListGroup, Container } from 
 import LinkItem from './LinkItem';
 import { fetchItemsByDescription, deleteItemById } from '../redux/slices/searchSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import Spinner from './Spinner'
 
 
 const Home = () => {
   const dispatch = useDispatch();
-  const items = useSelector(state => state.search.items);
+  const {items,status} = useSelector(state => state.search);
   
   const [query, setQuery] = useState('');
 
@@ -47,7 +48,6 @@ const Home = () => {
   return (
     <Container>
       {/* Search and New Link Buttons */}
-      
       <Row className="mt-5 justify-content-center align-items-center">
         <Col md={8} lg={6}>
           <InputGroup className="shadowed-input">
@@ -73,8 +73,9 @@ const Home = () => {
       
         <Col>
           <ListGroup className="my-4">
-            {items.length === 0 && <h5 className='text-center'>Search to Load Something</h5>}
-            {items.length !== 0 && items.map(item => (
+            {status!=='loading' && items.length === 0 && <h5 className='text-center'>Search to Load Something</h5>}
+            {status==='loading' && <Spinner/>}
+            {status==='succeeded' &&  items.length !== 0 && items.map(item => (
               <LinkItem key={item._id} id={item._id} description={item.description} link={item.link} tags={item.tags} handleDelete={handleDelete} navigateTo="/" />
             ))}
       
