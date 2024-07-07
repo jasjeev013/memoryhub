@@ -77,7 +77,7 @@ const categorySlice = createSlice({
             })
             .addCase(fetchTagsByTerm.fulfilled, (state, action) => {
                 state.statusTags = 'succeeded';
-                console.log(action.payload);
+
                 state.categories = action.payload;
             })
             .addCase(fetchTagsByTerm.rejected, (state, action) => {
