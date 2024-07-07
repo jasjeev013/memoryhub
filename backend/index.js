@@ -11,7 +11,14 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(express.json());
-app.use(cors()); // Enable CORS for all routes
+const corsOptions = {
+  origin: 'http://localhost:3000', // Allow requests from this origin
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  optionsSuccessStatus: 204 // Some legacy browsers choke on 204
+};
+
+app.use(cors(corsOptions)); 
 
 // Connect to MongoDB
 mongoose.connect("mongodb+srv://jasjeev:jasjeev123@cluster0.6cm268c.mongodb.net/?retryWrites=true&w=majority")
