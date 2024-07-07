@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = 'https://memoryhub-backend.vercel.app/'
+const API_URL = 'https://memoryhub-backend.vercel.app'
 
 // Async thunk to search item bt description
 export const fetchItemsByDescription = createAsyncThunk('items/fetchByDescription',
