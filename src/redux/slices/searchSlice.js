@@ -47,18 +47,18 @@ export const addItem = createAsyncThunk(
 export const updateItemById = createAsyncThunk(
     'items/updateItemById',
     async ({ id, description, link, tags }, { rejectWithValue }) => {
-      try {
-        const response = await axios.put(`${API_URL}/items/${id}`, {
-          description,
-          link,
-          tags
-        });
-        return response.data;
-      } catch (error) {
-        return rejectWithValue(error.response.data);
-      }
+        try {
+            const response = await axios.put(`${API_URL}/items/${id}`, {
+                description,
+                link,
+                tags
+            });
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
     }
-  );
+);
 
 const searchSlice = createSlice({
     name: 'items',
@@ -84,26 +84,26 @@ const searchSlice = createSlice({
                 state.error = action.payload;
             })
             .addCase(deleteItemById.pending, (state) => {
-                state.status = 'loading';
+
             })
             .addCase(deleteItemById.fulfilled, (state, action) => {
-                state.status = 'succeeded';
+
                 // Remove the deleted item from the items array
                 state.items = state.items.filter(item => item.id !== action.payload);
             })
             .addCase(deleteItemById.rejected, (state, action) => {
-                state.status = 'failed';
+
                 state.error = action.payload;
             })
             .addCase(addItem.pending, (state) => {
-                state.status = 'loading';
+
             })
             .addCase(addItem.fulfilled, (state, action) => {
-                state.status = 'succeeded';
+
                 state.items.push(action.payload);
             })
             .addCase(addItem.rejected, (state, action) => {
-                state.status = 'failed';
+
                 state.error = action.payload;
             });
 
