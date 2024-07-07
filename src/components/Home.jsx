@@ -73,7 +73,7 @@ const Home = () => {
       
         <Col>
           <ListGroup className="my-4">
-            {status!=='loading' && items.length === 0 && <h5 className='text-center'>Search to Load Something</h5>}
+            {status!=='loading' && items.length === 0 && <h5 className='text-center'>No Links to Show</h5>}
             {status==='loading' && <Spinner/>}
             {status==='succeeded' &&  items.length !== 0 && items.map(item => (
               <LinkItem key={item._id} id={item._id} description={item.description} link={item.link} tags={item.tags} handleDelete={handleDelete} navigateTo="/" />

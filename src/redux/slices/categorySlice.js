@@ -50,7 +50,8 @@ const categorySlice = createSlice({
     initialState: {
         categories: [],
         items: [],
-        status: 'idle',
+        statusTags: 'idle',
+        statusLinks: 'idle',
         error: null,
         click: ''
     },
@@ -61,37 +62,37 @@ const categorySlice = createSlice({
     }, extraReducers: (builder) => {
         builder
             .addCase(fetchTags.pending, (state) => {
-                state.status = 'loading';
+                state.statusTags = 'loading';
             })
             .addCase(fetchTags.fulfilled, (state, action) => {
-                state.status = 'succeeded';
+                state.statusTags = 'succeeded';
                 state.categories = action.payload;
             })
             .addCase(fetchTags.rejected, (state, action) => {
-                state.status = 'failed';
+                state.statusTags = 'failed';
                 state.error = action.payload;
             })
             .addCase(fetchTagsByTerm.pending, (state) => {
-                state.status = 'loading';
+                state.statusTags = 'loading';
             })
             .addCase(fetchTagsByTerm.fulfilled, (state, action) => {
-                state.status = 'succeeded';
+                state.statusTags = 'succeeded';
                 console.log(action.payload);
                 state.categories = action.payload;
             })
             .addCase(fetchTagsByTerm.rejected, (state, action) => {
-                state.status = 'failed';
+                state.statusTags = 'failed';
                 state.error = action.payload;
             })
             .addCase(fetchItemsByTag.pending, (state) => {
-                state.status = 'loading';
+                state.statusLinks = 'loading';
             })
             .addCase(fetchItemsByTag.fulfilled, (state, action) => {
-                state.status = 'succeeded';
+                state.statusLinks = 'succeeded';
                 state.items = action.payload;
             })
             .addCase(fetchItemsByTag.rejected, (state, action) => {
-                state.status = 'failed';
+                state.statusLinks = 'failed';
                 state.error = action.payload;
             });
 
