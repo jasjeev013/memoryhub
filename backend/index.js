@@ -1,18 +1,23 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const connectDB = require('./db');
+const mongoose = require('mongoose');
+// const connectDB = require('./db');
 const itemRoutes = require('./routes/items');
 const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Connect to MongoDB
-connectDB();
 
 // Middleware
 app.use(express.json());
 app.use(cors()); // Enable CORS for all routes
+
+// Connect to MongoDB
+mongoose.connect("mongodb+srv://jasjeev:jasjeev123@cluster0.6cm268c.mongodb.net/?retryWrites=true&w=majority")
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('Could not connect to MongoDB', err));
+
 
 // Routes
 app.use('/items', itemRoutes);
