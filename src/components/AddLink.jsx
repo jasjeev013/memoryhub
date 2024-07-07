@@ -5,7 +5,7 @@ import { FaLink, FaPaperPlane } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addItem } from '../redux/slices/searchSlice';
-
+import { handleShowAddToast } from '../redux/slices/toastSlice';
 const AddLink = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,8 +30,9 @@ const AddLink = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      console.log(item);
+
       await dispatch(addItem(item));
+      dispatch(handleShowAddToast({ showAdd: "true", message: 'Link Added Successfully' }));
       navigate('/');
     } catch (error) {
       console.log(error);

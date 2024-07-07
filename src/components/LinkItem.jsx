@@ -1,17 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ListGroup, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Toast from './Toast';
+import { handleShowAddToast, handleShowUpdateToast } from '../redux/slices/toastSlice';
+const LinkItem = ({ id, description, link, handleDelete, tags, navigateTo }) => {
+    const toast = useSelector(state => state.toast);
+    const dispatch = useDispatch();
 
-const LinkItem = ({ id, description, link, handleDelete, tags,navigateTo }) => {
-
-
+    useEffect(() => {
+        if (toast.showUpdate) {
+            setTimeout(() => {
+                dispatch(handleShowUpdateToast({ showUpdate: "false", message: '' }))
+            }, 10000)
+        }
+        if(toast.showAdd){
+            setTimeout(() => {
+                dispatch(handleShowAddToast({ showAdd: "false", message: '' }))
+            }, 10000)
+        }
+    
+    },[dispatch,toast.showUpdate,toast.showAdd])
+       
+    
 
 
 
     return (
         <div className="list-item-container" >
             <ListGroup.Item className="custom-list-group-item d-flex justify-content-between align-items-center my-1">
-
                 <div className="title-container">
                     <div className="truncate">{description}</div>
                 </div>
@@ -21,7 +38,7 @@ const LinkItem = ({ id, description, link, handleDelete, tags,navigateTo }) => {
                         placement="top"
                         overlay={<Tooltip id="edit-tooltip">Edit</Tooltip>}
                     >
-                        <Link to='/updateLink' state={{ id, description, link, tags,navigateTo }} className="fa-solid fa-pen-to-square mx-4 action-icon" style={{
+                        <Link to='/updateLink' state={{ id, description, link, tags, navigateTo }} className="fa-solid fa-pen-to-square mx-4 action-icon" style={{
                             color: 'black',
                             textDecoration: 'none'
                         }} ></Link>
@@ -34,6 +51,8 @@ const LinkItem = ({ id, description, link, handleDelete, tags,navigateTo }) => {
                     </OverlayTrigger>
                 </div>
             </ListGroup.Item>
+            {toast.showUpdate==="true" && <Toast message={toast.message} />}
+            {toast.showAdd==="true" && <Toast message={toast.message} />}
         </div>
     );
 };

@@ -5,9 +5,11 @@ import LinkItem from './LinkItem';
 import { fetchItemsByDescription, deleteItemById } from '../redux/slices/searchSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
+
 const Home = () => {
   const dispatch = useDispatch();
   const items = useSelector(state => state.search.items);
+  
   const [query, setQuery] = useState('');
 
   useEffect(() => {
@@ -37,15 +39,15 @@ const Home = () => {
 
   const handleDelete = async (id) => {
     await dispatch(deleteItemById(id));
-  
     await dispatch(fetchItemsByDescription(query));
-    console.log('Delete clicked');
+
   };
 
 
   return (
     <Container>
       {/* Search and New Link Buttons */}
+      
       <Row className="mt-5 justify-content-center align-items-center">
         <Col md={8} lg={6}>
           <InputGroup className="shadowed-input">
@@ -79,7 +81,7 @@ const Home = () => {
           </ListGroup>
         </Col>
       </Row>
-        
+      
     </Container>
   );
 };
