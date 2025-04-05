@@ -1,70 +1,185 @@
-# Getting Started with Create React App
+# MemoryHub
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![MemoryHub](./public/bg-image.png) 
 
-## Available Scripts
+MemoryHub is a web platform that lets users save important links, organize them with tags, and easily search by title, category, or tags. It offers a user-friendly interface for efficient link management.
 
-In the project directory, you can run:
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## **📌 Table of Contents**  
+1. [Features](#-features)  
+2. [Technologies Used](#-technologies-used)  
+3. [Folder Structure](#-folder-structure)  
+4. [Installation & Setup](#-installation--setup)  
+5. [Screenshots](#-screenshots)  
+6. [API Documentation](#-api-documentation)  
+7. [Contributing](#-contributing)   
+8. [Contact](#-contact)  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
+## ✨ Features
 
-### `npm test`
+- 📌 Save and organize web links with custom tags
+- 🔍 Powerful search by title, category, or tags
+- � User-friendly interface with responsive design
+- 🔄 Real-time updates and synchronization
+- 🗂️ Categorize links for better organization
+- 🚀 Quick access to frequently used links
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
+## 🛠 Technologies Used
 
-### `npm run build`
+### Frontend
+- React.js
+- Redux Toolkit (State management)
+- React Router (Navigation)
+- React Bootstrap (UI Components)
+- Axios (HTTP requests)
+- Styled Components (CSS-in-JS)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Backend
+- Node.js
+- Express.js
+- MongoDB (via Mongoose)
+- RESTful API architecture
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
+## 📂 Folder Structure 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+jasjeev013-memoryhub/
+├── README.md
+├── package.json
+├── backend/
+│   ├── db.js
+│   ├── index.js
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── vercel.json
+│   ├── .env
+│   ├── models/
+│   │   └── Item.js
+│   └── routes/
+│       └── items.js
+├── public/
+│   ├── index.html
+│   ├── manifest.json
+│   └── robots.txt
+└── src/
+    ├── AboutUs.jsx
+    ├── App.css
+    ├── App.js
+    ├── App.test.js
+    ├── data.json
+    ├── index.css
+    ├── index.js
+    ├── reportWebVitals.js
+    ├── setupTests.js
+    ├── components/
+    │   ├── AddLink.jsx
+    │   ├── Categories.jsx
+    │   ├── Home.jsx
+    │   ├── LinkItem.jsx
+    │   ├── NavBar.jsx
+    │   ├── Spinner.jsx
+    │   ├── Toast.jsx
+    │   └── UpdateLink.jsx
+    └── redux/
+        ├── store.js
+        └── slices/
+            ├── categorySlice.js
+            ├── searchSlice.js
+            └── toastSlice.js
+```
 
-### `npm run eject`
+---
+## ⚙ Installation & Setup
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Prerequisites
+- Node.js (v16 or higher)
+- MongoDB (either local or Atlas URI)
+- npm (comes with Node.js)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Setup Instructions
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/jasjeev013/memoryhub.git
+   cd memoryhub
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. **Install frontend dependencies**
+   ```bash
+   npm install
+   ```
 
-## Learn More
+3. **Install backend dependencies**
+   ```bash
+   cd backend
+   npm install
+   cd ..
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. **Environment Setup**
+   - Create a `.env` file in the `backend` directory with:
+     ```
+     MONGO_URI=your_mongodb_connection_string
+     PORT=5000
+     ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+5. **Running the Application**
+   - For development (both frontend and backend):
+     ```bash
+     npm run both
+     ```
+   - Alternatively, run separately:
+     - Frontend:
+       ```bash
+       npm start
+       ```
+     - Backend (in another terminal):
+       ```bash
+       cd backend
+       nodemon index.js
+       ```
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📸 Screenshots
 
-### Analyzing the Bundle Size
+### **Dasdboard Page**
+![Login Page](./public/frontPage.png)  
+### **Category Dashboard**  
+![Task Dashboard](./public/categoryDashboard.png)  
+### **Adding LinK**  
+![Task Creation Modal](./public/addlink.png)  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
+## 📜 API Documentation
 
-### Making a Progressive Web App
+| Method | Endpoint       | Description                     |
+|--------|----------------|---------------------------------|
+| GET    | /api/items     | Get all saved links             |
+| POST   | /api/items     | Add a new link                  |
+| PUT    | /api/items/:id | Update an existing link         |
+| DELETE | /api/items/:id | Delete a link                   |
+| GET    | /api/items/:id | Get a specific link             |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
+## 🤝 Contributing
 
-### Advanced Configuration
+Contributions are welcome! Please follow these steps:
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## 📧 Contact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Created by [Jasjeev Singh](https://github.com/jasjeev013) - feel free to contact me!
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
